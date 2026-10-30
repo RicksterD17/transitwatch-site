@@ -1,0 +1,8 @@
+:root { color-scheme: light dark; --accent: #f05a22; }
+body { font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+h1 { font-size: 2rem; margin: 0 0 .25rem; }
+h2 { font-size: 1.2rem; margin-top: 2rem; }
+.tagline { color: GrayText; margin-top: 0; }
+a { color: var(--accent); }
+.contact { padding: 1rem 1.25rem; border-radius: 14px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+footer { margin-top: 3rem; font-size: .9rem; color: GrayText; }
