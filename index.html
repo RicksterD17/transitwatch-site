@@ -3,14 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TransitWatch Support</title>
-<!-- Moved to ios/ (2026-11-06). Kept so the App Store Connect URLs and old links keep working. -->
-<link rel="canonical" href="ios/">
-<meta http-equiv="refresh" content="0; url=ios/">
-<script>location.replace("ios/" + location.hash)</script>
+<title>TransitWatch: live BART departures at a glance</title>
+<meta name="description" content="Live BART departures from the station you're near, and when to leave for home. For iPhone, Apple Watch and Android.">
+<!-- Was a redirect to ios/ (2026-11-06); the home page for both apps since Android 3.0 went live (2026-11-07).
+     privacy.html and accessibility.html here still redirect to ios/ for App Store Connect. -->
+<link rel="icon" href="images/icon.png">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Accessible oranges: #c2410c is 5.2:1 on white; #ff9a6b is 7:1 on the dark background. */
+  /* --muted: 5.9:1 on white, 7:1 on the dark background (GrayText is too faint). */
+  :root { --ink: #c2410c; --card: #f4f1ee; --line: #e3ddd8; --muted: #6b625c; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #ff9a6b; --card: #2c2826; --line: #45403c; --muted: #b8afa8; } }
+  body { max-width: 62rem; padding-top: 0; }
+  a { color: var(--ink); }
+
+  /* Navy taken from the App Store header image (AppStore/Header in the iOS repository), which sits
+     full width at the bottom of the hero, its top edge faded into the background. */
+  .hero { margin: 0 -1.25rem; padding: 3rem 1.25rem 0; text-align: center; color: #fff; overflow: hidden;
+          background: radial-gradient(ellipse at 50% 100%, #14305f 0%, #0b2350 45%, #071b42 100%); border-radius: 0 0 28px 28px; }
+  .hero .art { display: block; width: calc(100% + 2.5rem); height: auto; margin: 1.5rem -1.25rem 0;
+               -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18%);
+                       mask-image: linear-gradient(to bottom, transparent 0, #000 18%); }
+  .hero > img { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 10px 30px rgb(0 0 0 / .3); }
+  .hero h1 { font-size: 2.6rem; margin: 1rem 0 .25rem; letter-spacing: -.02em; }
+  .hero p { font-size: 1.2rem; margin: 0 auto; max-width: 30rem; }
+  .hero .platforms { margin-top: .75rem; font-size: 1rem; opacity: .95; }
+  /* Official store badges, unmodified (Apple and Google badge guidelines). Both show 52 px tall: Google's
+     PNG has 41 of 250 px transparent padding on each side, taken back with negative margins. */
+  .hero .badges { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
+  .hero .badges a { display: block; line-height: 0; border-radius: 10px; }
+  .hero .badges a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .hero .badges .apple { width: 156px; height: 52px; }
+  .hero .badges .google { width: 199px; height: 77px; margin: -12.6px; }
+
+  .shots { display: flex; justify-content: center; align-items: flex-end; gap: 2rem; flex-wrap: wrap;
+           margin: 3rem 0 1rem; }
+  .shots figure { margin: 0; text-align: center; }
+  .shots img { display: block; margin: 0 auto .75rem; box-shadow: 0 12px 32px rgb(0 0 0 / .18);
+               border: 1px solid var(--line); }
+  .shots .phone img { width: 230px; height: auto; border-radius: 30px; }
+  .shots .watch img { width: 170px; height: auto; border-radius: 38px; border: 8px solid #1c1c1e; }
+  .shots figcaption { font-size: .95rem; color: var(--muted); }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .feature { background: var(--card); border-radius: 18px; padding: 1.25rem; }
+  .feature svg { width: 32px; height: 32px; color: var(--ink); }
+  .feature h3 { margin: .5rem 0 .25rem; font-size: 1.05rem; }
+  .feature p { margin: 0; font-size: .95rem; }
+
+  .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+  .app { border: 1px solid var(--line); border-radius: 18px; padding: 1.25rem 1.5rem; }
+  .app h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+  .app ul { margin: 0; padding-left: 1.2rem; }
+  .app li { margin: .25rem 0; }
+  .contact { margin-top: 1.5rem; }
+  .contact a { color: var(--ink); }
+  h2 { font-size: 1.4rem; margin-top: 3rem; }
+  footer { color: var(--muted); }
+</style>
 </head>
 <body>
-<p>This page has moved to <a href="ios/">TransitWatch Support</a>.</p>
+<header class="hero">
+  <img src="images/icon.png" alt="">
+  <h1>TransitWatch</h1>
+  <p>The right train departure at a glance.</p>
+  <p class="platforms">Live BART departures for iPhone, Apple Watch and Android.</p>
+  <div class="badges">
+    <a href="https://apps.apple.com/app/id1022517633"><img class="apple" src="images/app-store-badge.svg" width="156" height="52" alt="Download on the App Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.ricksterware.transitwatch"><img class="google" src="images/google-play-badge.png" width="200" height="77" alt="Get it on Google Play"></a>
+  </div>
+  <img class="art" src="images/header.jpg" width="2000" height="857" alt="TransitWatch on iPhone and Apple Watch: departures from Powell St by platform, over colored lines like a transit map">
+</header>
+
+<main>
+<div class="shots">
+  <figure class="phone">
+    <img src="images/iphone-look-around.jpg" width="460" height="1000" alt="iPhone: the map near Powell St with the street view of the Market Street and 4th Street entrance">
+    <figcaption>iPhone</figcaption>
+  </figure>
+  <figure class="watch">
+    <img src="images/watch-last-ride.png" width="416" height="496" alt="Apple Watch: Last Ride Home, leave by 12:21 AM for the 12:28 AM Antioch train">
+    <figcaption>Apple Watch</figcaption>
+  </figure>
+  <figure class="phone">
+    <img src="images/android-map.jpg" width="562" height="1000" alt="Android: the map of downtown San Francisco with BART stations along Market Street">
+    <figcaption>Android</figcaption>
+  </figure>
+</div>
+
+<section class="features" aria-label="Features">
+  <div class="feature">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    <h3>The next train, at a glance</h3>
+    <p>Opens on the station you're closest to, with live times by platform and how many cars each train has.</p>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+    <h3>Last Ride Home</h3>
+    <p>Set your home station and see when to leave for the last train home tonight.</p>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+    <h3>Walk time and map</h3>
+    <p>Your walk to the station, every line and station on the map, and the street view of each entrance.</p>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    <h3>Private by design</h3>
+    <p>No account and no ads. Your location is never sent to us.</p>
+  </div>
+</section>
+
+<h2>Support, privacy and accessibility</h2>
+<div class="apps">
+  <section class="app" aria-labelledby="ios">
+    <h3 id="ios">iPhone and Apple Watch</h3>
+    <ul>
+      <li><a href="ios/">Support</a></li>
+      <li><a href="ios/privacy.html">Privacy Policy</a></li>
+      <li><a href="ios/accessibility.html">Accessibility</a></li>
+    </ul>
+  </section>
+  <section class="app" aria-labelledby="android">
+    <h3 id="android">Android</h3>
+    <ul>
+      <li><a href="android/">Support</a></li>
+      <li><a href="android/privacy.html">Privacy Policy</a></li>
+      <li><a href="android/accessibility.html">Accessibility</a></li>
+    </ul>
+  </section>
+</div>
+
+<div class="contact">
+  <p style="margin:0">Questions, problems or suggestions? Email <a href="mailto:transitwatchapp@gmail.com?subject=TransitWatch%20Support">transitwatchapp@gmail.com</a>.</p>
+</div>
+</main>
+
+<footer>TransitWatch is an independent app and isn't affiliated with or endorsed by BART.<br>
+Apple, the Apple logo and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.
+Google Play and the Google Play logo are trademarks of Google LLC.</footer>
 </body>
 </html>
