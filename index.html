@@ -27,7 +27,7 @@
   .hero > img { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 10px 30px rgb(0 0 0 / .3); }
   .hero h1 { font-size: 2.6rem; margin: 1rem 0 .25rem; letter-spacing: -.02em; }
   .hero p { font-size: 1.2rem; margin: 0 auto; max-width: 30rem; }
-  .hero .platforms { margin-top: .75rem; font-size: 1rem; opacity: .95; }
+  .hero .platforms { margin-top: .75rem; font-size: 1rem; opacity: .95; max-width: none; text-wrap: balance; }
   /* Official store badges, unmodified (Apple and Google badge guidelines). Both show 52 px tall: Google's
      PNG has 41 of 250 px transparent padding on each side, taken back with negative margins. */
   .hero .badges { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
@@ -43,6 +43,7 @@
                border: 1px solid var(--line); }
   .shots .phone img { width: 230px; height: auto; border-radius: 30px; }
   .shots .watch img { width: 170px; height: auto; border-radius: 38px; border: 8px solid #1c1c1e; }
+  .shots .wear img { width: 170px; height: auto; border-radius: 50%; border: 10px solid #1c1c1e; }
   .shots figcaption { font-size: .95rem; color: var(--muted); }
 
   .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin-top: 2.5rem; }
@@ -67,27 +68,31 @@
   <img src="images/icon.png" alt="">
   <h1>TransitWatch</h1>
   <p>The right train departure at a glance.</p>
-  <p class="platforms">Live BART departures for iPhone, Apple Watch, Android and Wear OS.</p>
+  <p class="platforms">Live BART departures for iPhone, Apple&nbsp;Watch, Android and Wear&nbsp;OS.</p>
   <div class="badges">
     <a href="https://apps.apple.com/app/id1022517633"><img class="apple" src="images/app-store-badge.svg" width="156" height="52" alt="Download on the App Store"></a>
     <a href="https://play.google.com/store/apps/details?id=com.ricksterware.transitwatch"><img class="google" src="images/google-play-badge.png" width="200" height="77" alt="Get it on Google Play"></a>
   </div>
-  <img class="art" src="images/header.jpg" width="2000" height="857" alt="TransitWatch on iPhone and Apple Watch: departures from Powell St by platform, over colored lines like a transit map">
+  <img class="art" src="images/header.jpg" width="2000" height="857" alt="The next train, at a glance. TransitWatch on iPhone and Apple Watch: departures from Powell St by platform, over colored lines like a transit map">
 </header>
 
 <main>
 <div class="shots">
   <figure class="phone">
-    <img src="images/iphone-look-around.jpg" width="460" height="1000" alt="iPhone: the map near Powell St with the street view of the Market Street and 4th Street entrance">
+    <img src="images/iphone-look-around.jpg" width="460" height="1000" alt="iPhone: the map at Embarcadero with Look Around at the Market and Drumm Street entrance">
     <figcaption>iPhone</figcaption>
   </figure>
   <figure class="watch">
-    <img src="images/watch-last-ride.png" width="416" height="496" alt="Apple Watch: Last Ride Home, leave by 12:21 AM for the 12:28 AM Antioch train">
+    <img src="images/watch-last-ride.png" width="416" height="496" alt="Apple Watch: Last Ride Home, leave by 12:20 AM for the 12:28 AM Antioch train">
     <figcaption>Apple Watch</figcaption>
   </figure>
   <figure class="phone">
     <img src="images/android-map.jpg" width="562" height="1000" alt="Android: the map of downtown San Francisco with BART stations along Market Street">
     <figcaption>Android</figcaption>
+  </figure>
+  <figure class="wear">
+    <img src="images/wear-departures.png" width="454" height="454" alt="Wear OS watch: Powell St, 1 minute walk, Platform 1 departures to Daly City and SF Airport">
+    <figcaption>Wear OS</figcaption>
   </figure>
 </div>
 
@@ -100,7 +105,7 @@
   <div class="feature">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
     <h3>Last Ride Home</h3>
-    <p>Set your home station and see when to leave for the last train home tonight.</p>
+    <p>Set your home station and see when to leave for the last train home tonight, with a reminder 30 and 10 minutes before.</p>
   </div>
   <div class="feature">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
